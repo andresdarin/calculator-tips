@@ -30,10 +30,6 @@ export default function OrderContents({ order, removeItem }: OrderContentsProps)
                                 </div>
                             </li>
                         ))}
-                        <li className="flex justify-between pt-2">
-                            <span className="font-bold">Total</span>
-                            <span className="font-bold">{formatCurrency(order.reduce((acc, item) => acc + item.price * item.quantity, 0))}</span>
-                        </li>
                     </ul>
                 )}
             </div>
