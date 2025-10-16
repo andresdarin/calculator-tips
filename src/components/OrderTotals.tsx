@@ -9,7 +9,7 @@ type OrderTotalsProps = {
     placeOrder?: () => void
 }
 
-export const OrderTotals = ({ order, tip, total, placeOrder }: OrderTotalsProps) => {
+export const OrderTotals = ({ order, tip, placeOrder }: OrderTotalsProps) => {
     const subTotalAmount = useMemo(() => order.reduce((total, item) => total + (item.price * item.quantity), 0), [order]);
     const tipAmount = useMemo(() => tip ? subTotalAmount * tip : 0, [order, tip]);
     const totalAmount = useMemo(() => subTotalAmount + tipAmount, [subTotalAmount, tipAmount]);
