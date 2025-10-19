@@ -1,13 +1,14 @@
 import { X } from "lucide-react";
 import { formatCurrency } from "../helpers";
 import type { OrderItem } from "../types";
+import type { Dispatch } from "react";
 
 type OrderContentsProps = {
     order: OrderItem[],
-    removeItem: (itemId: number) => void
+    dispatch: Dispatch<any>,
 }
 
-export default function OrderContents({ order, removeItem }: OrderContentsProps) {
+export default function OrderContents({ order, dispatch }: OrderContentsProps) {
     return (
         <div>
             <h2 className="text-center my-4 text-lg">
@@ -24,7 +25,7 @@ export default function OrderContents({ order, removeItem }: OrderContentsProps)
                                 <span className="col-span-1">{item.quantity}</span>
                                 <span className="col-span-1">{formatCurrency(item.price * item.quantity)}</span>
                                 <div className="flex items-center justify-end">
-                                    <button onClick={() => removeItem(item.id)} className="text-white rounded-full w-6 h-6 bg-red-500 font-bold flex items-center justify-center">
+                                    <button onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: { itemId: item.id } })} className="text-white rounded-full w-6 h-6 bg-red-500 font-bold flex items-center justify-center">
                                         <X />
                                     </button>
                                 </div>
